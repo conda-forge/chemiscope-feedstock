@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/chemiscope-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/chemiscope-{{ version }}.tar.gz
   sha256: 6e99661c912b72202280912e32126c5ea8709642e1e064259153e5243ff90ee6
 
 build:
@@ -14,17 +14,17 @@ build:
     - chemiscope-input = chemiscope.main:main
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
 
 requirements:
   host:
-    - python >=3.9
+    - python {{ python_min }}
     - setuptools
     - wheel
     - jupyterlab >=4.0
     - pip
   run:
-    - python >=3.9
+    - python >={{ python_min }}
     - ase
     - numpy
     - ipywidgets >=7,<9
@@ -37,6 +37,7 @@ test:
     - chemiscope-input --help
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   summary: Helpers to work with the chemiscope interactive structure/property explorer for materials and molecules
