@@ -1,5 +1,5 @@
 {% set name = "chemiscope" %}
-{% set version = "1.0.0" %}
+{% set version = "1.0.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/chemiscope-{{ version }}.tar.gz
-  sha256: 5579cafc2872940c01481fa9a27a4c82622a606226b158790c4499e68bca6de9
+  sha256: 159326b511017cd0769718d6d6cf55ee848207b9bc3a0a4befaac25fb18af5dc
 
 build:
   entry_points:
