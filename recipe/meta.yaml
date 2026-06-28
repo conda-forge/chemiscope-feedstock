@@ -1,5 +1,5 @@
 {% set name = "chemiscope" %}
-{% set version = "1.0.4" %}
+{% set version = "1.1.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/chemiscope-{{ version }}.tar.gz
-  sha256: 23e303acec1bcbb8fdb1f95f0e4fff448fa47439a66889bdfa8a1a39d343789e
+  sha256: 87fae6fb05dc44c8cee3c778e40b4dd62ac5164df91cc3db46421d31ef3903be
 
 build:
   entry_points:
@@ -24,6 +24,7 @@ requirements:
     - jupyterlab >=4.0
     - pip
   run:
+    - anywidget
     - python >={{ python_min }}
     - ase
     - numpy
