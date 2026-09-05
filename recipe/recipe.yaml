@@ -1,0 +1,60 @@
+schema_version: 1
+
+context:
+  name: chemiscope
+  version: "1.1.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/chemiscope-${{ version }}.tar.gz
+  sha256: 87fae6fb05dc44c8cee3c778e40b4dd62ac5164df91cc3db46421d31ef3903be
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - chemiscope-input = chemiscope.main:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools
+    - wheel
+    - jupyterlab >=4.0
+    - pip
+  run:
+    - anywidget
+    - python >=${{ python_min }}
+    - ase
+    - numpy
+    - ipywidgets >=7,<9
+
+tests:
+  - python:
+      imports:
+        - chemiscope
+      pip_check: true
+      python_version:
+        - ${{ python_min }}
+        - "*"
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - chemiscope-input --help
+
+about:
+  summary: Helpers to work with the chemiscope interactive structure/property explorer for materials and molecules
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/lab-cosmo/chemiscope
+
+extra:
+  recipe-maintainers:
+    - jan-janssen
